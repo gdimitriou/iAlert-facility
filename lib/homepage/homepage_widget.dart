@@ -26,7 +26,6 @@ class _HomepageWidgetState extends State<HomepageWidget> {
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
@@ -35,7 +34,6 @@ class _HomepageWidgetState extends State<HomepageWidget> {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
-        FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
         key: scaffoldKey,
@@ -43,20 +41,15 @@ class _HomepageWidgetState extends State<HomepageWidget> {
         appBar: AppBar(
           backgroundColor: const Color(0xFF39B1EF),
           automaticallyImplyLeading: false,
-          title: Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
-            child: Text(
-              'iAlert Facility',
-              style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Inter Tight',
-                    color: Colors.white,
-                    fontSize: 22.0,
-                    letterSpacing: 0.0,
-                  ),
-            ),
+          title: Text(
+            'iAlert Facility',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Inter Tight',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  letterSpacing: 0.0,
+                ),
           ),
-          actions: const [],
-          centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
@@ -64,176 +57,83 @@ class _HomepageWidgetState extends State<HomepageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Expanded(
-                child: Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/worker.png',
-                          width: 100.0,
-                          height: 100.0,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Expanded(
-                        child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(24.0),
-                            child: Text(
-                              'Employee: 51000\nWithdraw: 07/02/2025 21:07\nPosition: 50.049583, 19.944265\nNFC Status: Enable',
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
+              // User Card Section
+              Container(
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
-                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Flexible(
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: Text(
-                          'No notifications found',
-                          textAlign: TextAlign.start,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        'assets/images/worker.png',
+                        width: 100.0,
+                        height: 100.0,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    const SizedBox(width: 16.0),
+                    Expanded(
+                      child: Text(
+                        'Employee: 51000\nWithdraw: 07/02/2025 21:07\nPosition: 50.049583, 19.944265\nNFC Status: Enable',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Inter',
+                              fontSize: 15.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                     ),
                   ],
                 ),
               ),
+              // Notifications Section
               Expanded(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
+                child: Center(
+                  child: Text(
+                    'No notifications found',
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Inter',
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ),
+              ),
+              // Buttons Section
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Column(
                   children: [
-                    Align(
-                      alignment: const AlignmentDirectional(-1.0, -1.0),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 50.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () {
-                            print('CameraButton pressed ...');
-                          },
-                          text: '',
-                          icon: const Icon(
-                            Icons.camera_alt,
-                            size: 50.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 80.0,
-                            height: 80.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF39B1EF),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Inter Tight',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(24.0),
-                          ),
-                        ),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildButton(Icons.camera_alt, () {
+                          print('CameraButton pressed ...');
+                        }),
+                        _buildButton(Icons.local_fire_department_sharp, () {
+                          print('AlertButton pressed ...');
+                        }, text: 'Alert'),
+                        _buildButton(Icons.qr_code, () {
+                          print('QR Button pressed ...');
+                        }),
+                      ],
                     ),
-                    Flexible(
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, -1.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 50.0, 0.0),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('AlertButton pressed ...');
-                            },
-                            text: 'Alert',
-                            icon: const Icon(
-                              Icons.local_fire_department_sharp,
-                              size: 25.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 80.0,
-                              height: 80.0,
-                              padding: const EdgeInsets.all(0.0),
-                              iconAlignment: IconAlignment.end,
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF39B1EF),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Inter Tight',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    letterSpacing: 0.0,
-                                  ),
-                              borderRadius: BorderRadius.circular(24.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(1.0, -1.0),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () {
-                            print('CameraButton pressed ...');
-                          },
-                          text: '',
-                          icon: const Icon(
-                            Icons.qr_code,
-                            size: 50.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 80.0,
-                            height: 80.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF39B1EF),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Inter Tight',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            borderRadius: BorderRadius.circular(24.0),
-                          ),
-                        ),
-                      ),
+                    const SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildButton(Icons.fire_extinguisher, () {
+                          print('Fire Button pressed ...');
+                        }),
+                        _buildButton(Icons.medical_services, () {
+                          print('Medical Button pressed ...');
+                        }),
+                        _buildButton(Icons.phone, () {
+                          print('Phone Button pressed ...');
+                        }),
+                      ],
                     ),
                   ],
                 ),
@@ -241,6 +141,36 @@ class _HomepageWidgetState extends State<HomepageWidget> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildButton(IconData icon, VoidCallback onPressed, {String? text}) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF39B1EF),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.0)),
+        padding: const EdgeInsets.all(16.0),
+        minimumSize: const Size(80, 80),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 50.0, color: Colors.white),
+          if (text != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                text,
+                style: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: 'Inter Tight',
+                      color: Colors.white,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+            ),
+        ],
       ),
     );
   }
