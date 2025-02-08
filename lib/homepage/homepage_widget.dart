@@ -73,87 +73,15 @@ class _HomepageWidgetState extends State<HomepageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: IndexedStack(
+            index: _selectedIndex,
             children: [
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset(
-                        'assets/images/worker.png',
-                        width: 100.0,
-                        height: 100.0,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    const SizedBox(width: 16.0),
-                    Expanded(
-                      child: Text(
-                        'Employee: 51000\nWithdraw: 07/02/2025 21:07\nPosition: 50.049583, 19.944265\nNFC Status: Enable',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              fontSize: 15.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10.0),
-              Container(
-                height: 60.0, // Further reducing the height of notifications section
-                alignment: Alignment.center,
-                child: Text(
-                  'No notifications found',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-              ),
-              Spacer(), // Moves the buttons further down
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildButton(Icons.camera_alt, () {
-                        print('CameraButton pressed ...');
-                      }),
-                      _buildButton(Icons.local_fire_department_sharp, () {
-                        print('AlertButton pressed ...');
-                      }, text: 'Alert'),
-                      _buildButton(Icons.qr_code, () {
-                        print('QR Button pressed ...');
-                      }),
-                    ],
-                  ),
-                  const SizedBox(height: 10.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildButton(Icons.fire_extinguisher, () {
-                        print('Fire Button pressed ...');
-                      }),
-                      _buildButton(Icons.medical_services, () {
-                        print('Medical Button pressed ...');
-                      }),
-                      _buildButton(Icons.phone, () {
-                        print('Phone Button pressed ...');
-                      }),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.0),
+              _buildHomeContent(),
+              _buildHistoryContent(),
+              _buildNotificationsContent(),
+              _buildAboutContent(),
+              _buildTermsContent(),
+              _buildSettingsContent(),
             ],
           ),
         ),
@@ -171,6 +99,137 @@ class _HomepageWidgetState extends State<HomepageWidget> {
           unselectedItemColor: Colors.grey,
           onTap: _onItemTapped,
         ),
+      ),
+    );
+  }
+
+  Widget _buildHomeContent() {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'assets/images/worker.png',
+                  width: 100.0,
+                  height: 100.0,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              const SizedBox(width: 16.0),
+              Expanded(
+                child: Text(
+                  'Employee: 51000\nWithdraw: 07/02/2025 21:07\nPosition: 50.049583, 19.944265\nNFC Status: Enable',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Inter',
+                        fontSize: 15.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          height: 60.0,
+          alignment: Alignment.center,
+          child: Text(
+            'No notifications found',
+            textAlign: TextAlign.center,
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Inter',
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+        ),
+        Spacer(),
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildButton(Icons.camera_alt, () {
+                  print('CameraButton pressed ...');
+                }),
+                _buildButton(Icons.local_fire_department_sharp, () {
+                  print('AlertButton pressed ...');
+                }, text: 'Alert'),
+                _buildButton(Icons.qr_code, () {
+                  print('QR Button pressed ...');
+                }),
+              ],
+            ),
+            const SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildButton(Icons.fire_extinguisher, () {
+                  print('Fire Button pressed ...');
+                }),
+                _buildButton(Icons.medical_services, () {
+                  print('Medical Button pressed ...');
+                }),
+                _buildButton(Icons.phone, () {
+                  print('Phone Button pressed ...');
+                }),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 20.0),
+      ],
+    );
+  }
+
+  Widget _buildHistoryContent() {
+    return Center(
+      child: Text(
+        'History Content',
+        style: FlutterFlowTheme.of(context).bodyMedium,
+      ),
+    );
+  }
+
+  Widget _buildNotificationsContent() {
+    return Center(
+      child: Text(
+        'Notifications Content',
+        style: FlutterFlowTheme.of(context).bodyMedium,
+      ),
+    );
+  }
+
+  Widget _buildAboutContent() {
+    return Center(
+      child: Text(
+        'About Content',
+        style: FlutterFlowTheme.of(context).bodyMedium,
+      ),
+    );
+  }
+
+  Widget _buildTermsContent() {
+    return Center(
+      child: Text(
+        'Terms and Conditions Content',
+        style: FlutterFlowTheme.of(context).bodyMedium,
+      ),
+    );
+  }
+
+  Widget _buildSettingsContent() {
+    return Center(
+      child: Text(
+        'Settings Content',
+        style: FlutterFlowTheme.of(context).bodyMedium,
       ),
     );
   }
