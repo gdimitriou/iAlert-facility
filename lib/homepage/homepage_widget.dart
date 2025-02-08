@@ -159,6 +159,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
             BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Notifications'),
             BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
