@@ -29,6 +29,11 @@ class _HomepageWidgetState extends State<HomepageWidget> {
     super.dispose();
   }
 
+void _logout() {
+  print('User logged out');
+  context.go('/login'); // Redirects to the login screen using GoRouter
+}
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -50,6 +55,12 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.exit_to_app, color: Colors.white),
+              onPressed: _logout,
+            ),
+          ],
           elevation: 2.0,
         ),
         body: SafeArea(
