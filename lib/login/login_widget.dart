@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'login_model.dart';
+import '/services/auth_service.dart';
 export 'login_model.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -15,8 +16,10 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   late LoginModel _model;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // Initialize authManager
+  final AuthService authManager = AuthService(); // Replace AuthService with the correct class
 
   @override
   void initState() {
@@ -39,6 +42,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print('Building LoginWidget');
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -328,9 +332,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             0.0, 0.0, 0.0, 16.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            GoRouter.of(context)
-                                                .prepareAuthEvent();
-
                                             final user = await authManager
                                                 .signInWithEmail(
                                               context,
@@ -343,8 +344,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               return;
                                             }
 
-                                            context.goNamedAuth(
-                                                'null', context.mounted);
+                                            context.goNamed('Homepage');
                                           },
                                           text: 'Sign In',
                                           options: FFButtonOptions(
@@ -443,16 +443,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             0.0, 0.0, 0.0, 16.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            GoRouter.of(context)
-                                                .prepareAuthEvent();
                                             final user = await authManager
                                                 .signInWithGoogle(context);
                                             if (user == null) {
                                               return;
                                             }
 
-                                            context.goNamedAuth(
-                                                'null', context.mounted);
+                                            context.goNamed('Homepage');
                                           },
                                           text: 'Scan and Login',
                                           icon: const Icon(
