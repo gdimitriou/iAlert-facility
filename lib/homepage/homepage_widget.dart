@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'homepage_model.dart';
 export 'homepage_model.dart';
 
@@ -14,6 +15,7 @@ class HomepageWidget extends StatefulWidget {
 
 class _HomepageWidgetState extends State<HomepageWidget> {
   late HomepageModel _model;
+  int _selectedIndex = 0;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -29,10 +31,16 @@ class _HomepageWidgetState extends State<HomepageWidget> {
     super.dispose();
   }
 
-void _logout() {
-  print('User logged out');
-  context.go('/login'); // Redirects to the login screen using GoRouter
-}
+  void _logout() {
+    print('User logged out');
+    context.go('/login'); // Redirects to the login screen using GoRouter
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +76,6 @@ void _logout() {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              // User Card Section
               Container(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -98,59 +105,70 @@ void _logout() {
                   ],
                 ),
               ),
-              // Notifications Section
-              Expanded(
-                child: Center(
-                  child: Text(
-                    'No notifications found',
-                    textAlign: TextAlign.center,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Inter',
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ),
-              ),
-              // Buttons Section
+              SizedBox(height: 10.0),
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        _buildButton(Icons.camera_alt, () {
-                          print('CameraButton pressed ...');
-                        }),
-                        _buildButton(Icons.local_fire_department_sharp, () {
-                          print('AlertButton pressed ...');
-                        }, text: 'Alert'),
-                        _buildButton(Icons.qr_code, () {
-                          print('QR Button pressed ...');
-                        }),
-                      ],
-                    ),
-                    const SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        _buildButton(Icons.fire_extinguisher, () {
-                          print('Fire Button pressed ...');
-                        }),
-                        _buildButton(Icons.medical_services, () {
-                          print('Medical Button pressed ...');
-                        }),
-                        _buildButton(Icons.phone, () {
-                          print('Phone Button pressed ...');
-                        }),
-                      ],
-                    ),
-                  ],
+                height: 60.0, // Further reducing the height of notifications section
+                alignment: Alignment.center,
+                child: Text(
+                  'No notifications found',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Inter',
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
+              Spacer(), // Moves the buttons further down
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildButton(Icons.camera_alt, () {
+                        print('CameraButton pressed ...');
+                      }),
+                      _buildButton(Icons.local_fire_department_sharp, () {
+                        print('AlertButton pressed ...');
+                      }, text: 'Alert'),
+                      _buildButton(Icons.qr_code, () {
+                        print('QR Button pressed ...');
+                      }),
+                    ],
+                  ),
+                  const SizedBox(height: 10.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildButton(Icons.fire_extinguisher, () {
+                        print('Fire Button pressed ...');
+                      }),
+                      _buildButton(Icons.medical_services, () {
+                        print('Medical Button pressed ...');
+                      }),
+                      _buildButton(Icons.phone, () {
+                        print('Phone Button pressed ...');
+                      }),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.0),
             ],
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
+            BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Notifications'),
+            BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
+            BottomNavigationBarItem(icon: Icon(Icons.description), label: 'Terms and Conditions'),
+            BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Color(0xFF39B1EF),
+          unselectedItemColor: Colors.grey,
+          onTap: _onItemTapped,
         ),
       ),
     );
