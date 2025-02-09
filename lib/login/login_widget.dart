@@ -443,13 +443,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             0.0, 0.0, 0.0, 16.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            final user = await authManager
-                                                .loginWithQrCode(context);
+                                            // Call a method to scan QR Code and get the raw value
+                                            String scannedQrValue = await authManager.scanQRCode();
+                                            final user = await authManager.loginWithQrCode(context, scannedQrValue);
                                             if (user == null) {
                                               return;
                                             }
-
-                                            context.goNamed('Homepage');
+                                            context.goNamed('homepage');
                                           },
                                           text: 'Scan and Login',
                                           icon: const Icon(
