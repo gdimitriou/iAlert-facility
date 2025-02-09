@@ -26,8 +26,8 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
-    _model.emailAddressTextController ??= TextEditingController();
-    _model.emailAddressFocusNode ??= FocusNode();
+    _model.pinTextController ??= TextEditingController();
+    _model.pinFocusNode ??= FocusNode();
 
     _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
@@ -153,9 +153,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           width: double.infinity,
                                           child: TextFormField(
                                             controller: _model
-                                                .emailAddressTextController,
+                                                .pinTextController,
                                             focusNode:
-                                                _model.emailAddressFocusNode,
+                                                _model.pinFocusNode,
                                             autofocus: true,
                                             autofillHints: const [
                                               AutofillHints.email
@@ -221,9 +221,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                             keyboardType:
-                                                TextInputType.emailAddress,
+                                                TextInputType.text,
                                             validator: _model
-                                                .emailAddressTextControllerValidator
+                                                .pinTextControllerValidator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -335,7 +335,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             final user = await authManager
                                                 .loginWithCredentials(
                                               context,
-                                              _model.emailAddressTextController
+                                              _model.pinTextController
                                                   .text,
                                               _model
                                                   .passwordTextController.text,
