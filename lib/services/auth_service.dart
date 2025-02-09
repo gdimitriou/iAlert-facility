@@ -9,6 +9,12 @@ class AuthService {
   final storage = FlutterSecureStorage();
 
   Future<User?> loginWithCredentials(BuildContext context, String pin, String password) async {
+    // Check for hardcoded pin and password
+    if (pin == '51000' && password == '51000') {
+      // Directly return a User object for successful login
+      return User(userId: '51000', customerId: 'defaultCustomer');
+    }
+    
     final String url = 'https://api.ialertfacility.com/authentication_log';
 
     Map<String, dynamic> requestBody = {
