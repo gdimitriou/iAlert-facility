@@ -332,10 +332,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             0.0, 0.0, 0.0, 16.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            final user = await authManager.signInWithEmail(
+                                            final user = await authManager
+                                                .loginWithCredentials(
                                               context,
-                                              _model.emailAddressTextController.text,
-                                              _model.passwordTextController.text,
+                                              _model.emailAddressTextController
+                                                  .text,
+                                              _model
+                                                  .passwordTextController.text,
                                             );
                                             if (user == null) {
                                               return;
@@ -441,7 +444,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             final user = await authManager
-                                                .signInWithGoogle(context);
+                                                .loginWithQrCode(context);
                                             if (user == null) {
                                               return;
                                             }
